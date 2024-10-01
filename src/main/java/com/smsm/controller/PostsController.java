@@ -20,14 +20,23 @@ public class PostsController {
 
     private final PostsService postService;
 
+    // 게시글 목록
     @GetMapping("/list")
-    public String listPosts(@RequestParam(defaultValue = "0") int page,
+    public String postsList(@RequestParam(value = "page", defaultValue = "1") int page,
                             @RequestParam(defaultValue = "10") int size,
                             Model model) {
-        Pageable pageable = PageRequest.of(page, size);
+        Pageable pageable = PageRequest.of(page - 1, size);
         Page<PostResponseDto> postsPage = postService.getPosts(pageable);
-        model.addAttribute("posts", postsPage.getContent()); // postsPage의 내용을 추가
+        model.addAttribute("posts", postsPage.getContent());
         model.addAttribute("paging", postsPage);
         return "posts/postsList";
+    }
+
+
+    // 게시글 등록 -> form으로 이동
+    @GetMapping("/create")
+    public String register(Model model) {
+        model.addAttribute("postDto", new PostResponseDto());
+        return "posts/postsForm";
     }
 }

@@ -19,7 +19,7 @@ public class PostsService {
 
     // 게시글 목록 조회
     public Page<PostResponseDto> getPosts(Pageable pageable) {
-        Page<Posts> postsPage = postsRepository.findAllWithMember(pageable); // 수정된 메소드 호출
-        return postsPage.map(PostResponseDto::fromEntity); // DTO 변환
+        Page<Posts> postsPage = postsRepository.findAllWithMember(pageable);
+        return postsPage.map(PostResponseDto::fromEntity);
     }
 }
