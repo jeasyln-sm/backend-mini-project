@@ -45,4 +45,10 @@ public class MemberService implements UserDetailsService {
                 .build();
     }
 
+
+    public Member findByEmail(String email) {
+        return memberRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Member not found with email: " + email));
+    }
+
 }

@@ -13,4 +13,7 @@ public interface PostsRepository extends JpaRepository<Posts, Long> {
 
     @Query("SELECT p FROM Posts p JOIN FETCH p.member")
     Page<Posts> findAllWithMember(Pageable pageable);
+
+    @Query("SELECT p FROM Posts p ORDER BY p.noticeYn DESC, p.creDate DESC")
+    Page<Posts> findAllOrderByNoticeYnAndCreDate(Pageable pageable);
 }

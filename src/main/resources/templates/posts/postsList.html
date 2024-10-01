@@ -52,6 +52,18 @@
         td, th {
             text-align: center; /* Center-align all table cells */
         }
+
+        .text-danger {
+            color: red;
+        }
+
+        .font-weight-bold {
+            font-weight: bold;
+        }
+
+        .badge {
+            margin-left: 5px;
+        }
     </style>
 
     <th:block layout:fragment="script"></th:block>
@@ -79,7 +91,7 @@
             </div>
         </div>
 
-        <table class="table table-striped text-center"> <!-- Add text-center class -->
+        <table class="table table-striped text-center">
             <thead>
                 <tr>
                     <th scope="col"><input type="checkbox"/></th>
@@ -93,8 +105,8 @@
             <tbody>
                 <tr th:each="post, loop : ${paging.content}">
                     <td><input type="checkbox"/></td>
-                    <td th:text="${loop.index + 1}"></td>
-                    <td>
+                    <td th:text="${loop.index + 1 + (paging.number * paging.size)}"></td> <!-- 페이지 번호 조정 -->
+                    <td th:class="${post.noticeYn ? 'font-weight-bold text-danger' : ''}">
                         <a th:href="@{|/post/detail/${post.id}|}" th:text="${post.title}" class="text-decoration-none"></a>
                     </td>
                     <td th:text="${post.memberName}"></td>
@@ -103,7 +115,6 @@
                 </tr>
             </tbody>
         </table>
-
 
         <!-- 페이징처리 시작 -->
         <div th:if="${!paging.isEmpty()}" class="d-flex justify-content-center mt-4">
