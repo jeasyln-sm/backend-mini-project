@@ -1,0 +1,62 @@
+/* layout.css */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa; /* Light background */
+}
+
+.container {
+    background-color: #ffffff; /* White background for content area */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 20px; /* Padding inside the container */
+}
+
+.page_tits h3 {
+    font-size: 2rem; /* Larger font for title */
+    margin-bottom: 10px; /* Spacing below title */
+    color: #343a40; /* Dark text color */
+}
+
+.path {
+    font-size: 0.9rem; /* Smaller font for path */
+    color: #6c757d; /* Grey color for the path */
+}
+
+.search_box {
+    margin-bottom: 20px; /* Spacing below search box */
+}
+
+.input-group {
+    width: 100%; /* Full width for the input group */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Bootstrap primary color */
+    border: none; /* Remove border */
+}
+
+.table {
+    margin-top: 20px; /* Spacing above table */
+}
+
+.table th {
+    background-color: #f1f1f1; /* Light grey background for header */
+    color: #495057; /* Darker text color for header */
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9; /* Light striped background */
+}
+
+.table-hover tbody tr:hover {
+    background-color: #e2e6ea; /* Hover color */
+}
+
+.no-data {
+    color: #dc3545; /* Red color for "no data" message */
+    font-weight: bold; /* Bold text */
+}
+
+.table-responsive {
+    margin-top: 20px; /* Spacing above the responsive table */
+}

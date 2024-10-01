@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+
 @Getter @Setter
 @ToString
 @NoArgsConstructor
@@ -37,6 +39,7 @@ public class PostRequestDto {
                 .title(this.title)
                 .content(this.content)
                 .noticeYn(this.noticeYn != null ? this.noticeYn : false)
+                .creDate(LocalDateTime.now())
                 .member(member)
                 .build();
     }

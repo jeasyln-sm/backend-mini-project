@@ -1,5 +1,6 @@
 package com.smsm.dto;
 
+import com.smsm.entity.Posts;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -29,7 +30,7 @@ public class PostResponseDto {
     @NotEmpty(message = "내용은 필수항목입니다.")
     private String content;                  // 내용
 
-    private String member;                   // 작성자 이름 (Member 엔티티의 정보)
+    private String memberName;                   // 작성자 이름 (Member 엔티티의 정보)
 
     @Positive(message = "조회 수는 0 이상의 값이어야 합니다.")
     private int viewCnt;                     // 조회 수
@@ -43,4 +44,19 @@ public class PostResponseDto {
 
     @NotNull(message = "최종 수정일시는 필수항목입니다.")
     private LocalDateTime modDate;           // 최종 수정일시
+
+
+    public static PostResponseDto fromEntity(Posts post) {
+        return PostResponseDto.builder()
+                .id(post.getId())
+                .title(post.getTitle())
+                .content(post.getContent())
+                .memberName(post.getMember().getName())
+                .viewCnt(post.getViewCnt())
+                .noticeYn(post.getNoticeYn())
+                .deleteYn(post.getDeleteYn())
+                .creDate(post.getCreDate())
+                .modDate(post.getModDate())
+                .build();
+    }
 }

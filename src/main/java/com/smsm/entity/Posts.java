@@ -16,6 +16,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -38,7 +39,7 @@ public class Posts {
     @Column(columnDefinition = "TEXT", nullable = false, length = 3000)
     private String content;         // 내용
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "member_id")
     private Member member;          // 작성자
 
@@ -46,6 +47,7 @@ public class Posts {
     @Builder.Default
     private int viewCnt = 0;  // 조회 수, 기본값 0
 
+    @CreationTimestamp
     private LocalDateTime creDate;  // 작성일
 
     private LocalDateTime modDate;  // 변경일
