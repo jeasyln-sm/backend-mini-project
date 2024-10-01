@@ -43,6 +43,7 @@ public class MemberDto {
     private String detailadr;
 
 
+    // toEntity()
     public Member toEntity() {
         return Member.builder()
                 .name(this.name)

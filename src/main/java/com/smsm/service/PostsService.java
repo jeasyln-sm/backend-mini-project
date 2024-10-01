@@ -1,12 +1,15 @@
 package com.smsm.service;
 
-import com.smsm.repository.QuestionRopository;
+import com.smsm.repository.PostsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class QuestionService {
+public class PostsService {
 
-    private final QuestionRopository questionRopository;
+    private final PostsRepository postsRepository;
+
+
+
 }

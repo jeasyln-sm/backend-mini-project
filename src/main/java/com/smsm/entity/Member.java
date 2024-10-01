@@ -66,6 +66,4 @@ public class Member {
         member.setRole(Role.USER);
         return member;
     }
-
-
 }
