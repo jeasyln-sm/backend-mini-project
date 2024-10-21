@@ -53,18 +53,18 @@
     <h1>경제 뉴스</h1>
     <table>
         <thead>
-            <tr>
-                <th>제목</th>
-                <th>링크</th>
-                <th>발행일</th>
-            </tr>
+        <tr>
+            <th>제목</th>
+            <th>발행일</th>
+        </tr>
         </thead>
         <tbody>
-            <tr th:each="item : ${newsList}">
-                <td th:text="${T(org.apache.commons.text.StringEscapeUtils).unescapeHtml4(item.title)}"></td>
-                <td><a th:href="${item.link}" th:text="${item.link}"></a></td>
-                <td th:text="${item.pubDate}"></td>
-            </tr>
+        <tr th:each="item : ${newsList}">
+            <td>
+                <a th:href="${item.link}" target="_blank" th:text="${item.title}"></a> <!-- 링크 클릭 시 네이버 기사로 이동 -->
+            </td>
+            <td th:text="${item.pubDate}"></td>
+        </tr>
         </tbody>
     </table>
 </div>

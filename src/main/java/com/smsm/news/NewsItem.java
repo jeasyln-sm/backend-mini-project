@@ -1,7 +1,10 @@
 package com.smsm.news;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.apache.commons.lang3.StringEscapeUtils;
+
+import java.util.List;
 
 @Data
 public class NewsItem {
@@ -14,5 +17,11 @@ public class NewsItem {
 
     public String getCleanTitle() {
         return StringEscapeUtils.unescapeHtml4(title); // HTML 엔티티 변환
+    }
+
+    @Data
+    public class NewsResponse {
+        @JsonProperty("items")
+        private List<NewsItem> items; // 뉴스 항목 리스트
     }
 }

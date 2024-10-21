@@ -37,6 +37,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(authz -> authz
                 // 인가 동작 순서 : 위에서 부터 아래로 순서대로 ! 따라서 순서 유의 (anyRequest 특히)
                 .requestMatchers("/css/**").permitAll()
+                .requestMatchers("/api/news/details").permitAll() // AJAX 요청에 대한 접근 허용
                 .requestMatchers("/admin/**").hasRole("ADMIN")  // 접근 제어
                 .requestMatchers("/", "/member/**").permitAll()
                 .anyRequest().authenticated());
@@ -56,6 +57,4 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-
 }

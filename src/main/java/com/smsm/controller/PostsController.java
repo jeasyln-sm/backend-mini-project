@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,6 +31,7 @@ public class PostsController {
     private final MemberService memberService;
 
     // 게시글 목록
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/list")
     public String postsList(@RequestParam(value = "page", defaultValue = "1") int page,
                             @RequestParam(defaultValue = "10") int size,
@@ -43,7 +45,7 @@ public class PostsController {
 
 
     // 게시글 등록 -> form으로 이동
-//    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/create")
     public String createForm(Model model) {
         model.addAttribute("postDto", new PostResponseDto());
@@ -51,7 +53,7 @@ public class PostsController {
     }
 
     // 게시글 등록
-//    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/create")
     public String createPost(@Valid PostRequestDto postDto, BindingResult bindingResult, Principal principal) {
 
@@ -67,4 +69,25 @@ public class PostsController {
 
         return "redirect:/posts/list";
     }
+
+
+    // 게시물 상세 보기
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("detail/{id}")
+    public String postsDetail(@PathVariable Long id, Model model) {
+        PostResponseDto post = postService.getPost(id);
+        model.addAttribute("post", post);
+        return "posts/postsDetail";
+    }
+
+
+    // 게시글 수정
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/update/{id}")
+    public String updateForm(@PathVariable Long id, Model model) {
+        model.addAttribute("postDto", postService.getPost(id));
+        return "posts/postsForm";
+    }
+
+    // 게시글 삭제
 }

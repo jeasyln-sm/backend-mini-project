@@ -5,6 +5,7 @@ import com.smsm.dto.PostResponseDto;
 import com.smsm.entity.Member;
 import com.smsm.entity.Posts;
 import com.smsm.repository.PostsRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,5 +27,12 @@ public class PostsService {
     public void savePost(PostRequestDto postDto, Member member) {
         Posts posts = postDto.toEntity(member);
         postsRepository.save(posts);
+    }
+
+    // 게시물 상세 페이지
+    public PostResponseDto getPost(Long id) {
+        return postsRepository.findById(id)
+            .map(PostResponseDto::fromEntity)
+            .orElseThrow(() -> new EntityNotFoundException("Post not found with id: " + id));
     }
 }

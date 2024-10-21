@@ -107,7 +107,7 @@
                     <td><input type="checkbox"/></td>
                     <td th:text="${loop.index + 1 + (paging.number * paging.size)}"></td> <!-- 페이지 번호 조정 -->
                     <td th:class="${post.noticeYn ? 'font-weight-bold text-danger' : ''}">
-                        <a th:href="@{|/post/detail/${post.id}|}" th:text="${post.title}" class="text-decoration-none"></a>
+                        <a th:href="@{|/posts/detail/${post.id}|}" th:text="${post.title}" class="text-decoration-none"></a>
                     </td>
                     <td th:text="${post.memberName}"></td>
                     <td th:text="${#temporals.format(post.creDate, 'yyyy-MM-dd HH:mm')}"></td>
